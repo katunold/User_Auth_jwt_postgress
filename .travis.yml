@@ -1,0 +1,16 @@
+language: python
+python:
+- '3.6'
+sudo: false
+cache: pip3
+install:
+- pip3 install -r requirements.txt
+- pip3 install coverage
+- pip3 install coveralls
+script:
+- pytest --cov=user_api
+- coverage report
+- coverage xml
+- coveralls
+before_script:
+- psql -U postgres -f user_api_db.sql
