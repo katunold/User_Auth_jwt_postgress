@@ -9,7 +9,7 @@ DROP SCHEMA IF EXISTS production CASCADE;
 CREATE SCHEMA production;
 
 CREATE TABLE production.user (
-    user_id integer NOT NULL,
+    user_id SERIAL NOT NULL PRIMARY KEY,
     user_name character varying(45) NOT NULL,
     email character varying(45) NOT NULL,
     registered_on timestamp(6) without time zone NOT NULL,
@@ -21,7 +21,7 @@ DROP SCHEMA IF EXISTS tests CASCADE;
 CREATE SCHEMA tests;
 
 CREATE TABLE tests.user (
-    user_id integer NOT NULL,
+    user_id SERIAL NOT NULL PRIMARY KEY,
     user_name character varying(45) NOT NULL,
     email character varying(45) NOT NULL,
     registered_on timestamp(6) without time zone NOT NULL,
