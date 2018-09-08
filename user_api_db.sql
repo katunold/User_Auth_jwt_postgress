@@ -16,9 +16,9 @@ CREATE TABLE production.user (
     password character varying(255) NOT NULL
 );
 
-DROP SCHEMA IF EXISTS tests CASCADE
+DROP SCHEMA IF EXISTS tests CASCADE;
 
-CREATE SCHEMA tests
+CREATE SCHEMA tests;
 
 CREATE TABLE tests.user (
     user_id integer NOT NULL,
