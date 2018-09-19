@@ -1,3 +1,6 @@
+"""
+Module for user models
+"""
 import datetime
 
 from user_api.config.database import DatabaseConnection
@@ -21,6 +24,7 @@ class UserModel(JSONSerializable):
         self.user_name = user_name
         self.user_email = user_email
         self.user_password = user_password
+        self.user_id = None
 
 
 class Users(metaclass=Singleton):
@@ -64,9 +68,9 @@ class Users(metaclass=Singleton):
         }
         res = self.__database.find(self.__table, criteria=criteria)
         if res and isinstance(res, dict):
-            user = UserModel(res['user_name'], res['user_email'], None)
+            user = UserModel(res['user_name'], res['email'], None)
             user.user_id = res["user_id"]
-            user.user_password = res["user_password"].encode("utf8")
+            user.user_password = res["password"].encode("utf8")
             return user
         return False
 
@@ -100,3 +104,5 @@ class Users(metaclass=Singleton):
             user.user_password = res['password'].encode('utf8')
             return user
         return None
+
+
