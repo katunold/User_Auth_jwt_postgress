@@ -15,7 +15,7 @@ class HostConfig:
 
 class BaseConfig:
     """Base configuration."""
-    SECRET_KEY = os.getenv('SECRET_KEY', '\xf3G/y\xa4\xf0\x84(\x11\x16i\xb7\xb6\xfb\xdd\x11\x88\x12\x92V;\x0c`{')
+    SECRET_KEY = os.getenv('SECRET_KEY', '38c59ca136a64ae994153a015dbb6519e71ebacc331b85ba')
     DEBUG = False
     BCRYPT_LOG_ROUNDS = 13
     HOST = "127.0.0.1"
@@ -42,6 +42,6 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     """Production configuration."""
-    SECRET_KEY = '\xf3G/y\xa4\xf0\x84(\x11\x16i\xb7\xb6\xfb\xdd\x11\x88\x12\x92V;\x0c`{'
+    SECRET_KEY = '38c59ca136a64ae994153a015dbb6519e71ebacc331b85ba'
     DEBUG = False
     SCHEMA_PRODUCTION = "production"
