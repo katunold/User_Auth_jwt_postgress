@@ -15,7 +15,7 @@ class HostConfig:
 
 class BaseConfig:
     """Base configuration."""
-    SECRET_KEY = os.getenv('SECRET_KEY', '38c59ca136a64ae994153a015dbb6519e71ebacc331b85ba')
+    SECRET_KEY = '38c59ca136a64ae994153a015dbb6519e71ebacc331b85ba'
     DEBUG = False
     BCRYPT_LOG_ROUNDS = 13
     HOST = "127.0.0.1"
