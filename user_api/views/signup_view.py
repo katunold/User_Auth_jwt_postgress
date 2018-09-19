@@ -66,9 +66,3 @@ class SignUpController(MethodView):
             return ReturnError.username_already_exists()
         else:
             return ReturnError.could_not_process_request()
-
-
-
-
-
-
