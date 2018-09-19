@@ -7,7 +7,7 @@ from flask import json
 from user_api.config.config import TestingConfig
 from user_api.config.database import DatabaseConnection
 from user_api.models.token_model import Tokens
-from user_api.run import APP
+from run import APP
 
 
 class TestUserAuth(TestCase):
