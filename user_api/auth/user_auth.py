@@ -1,16 +1,15 @@
 """
 Authentication module for JWT token
 """
-import os
 
 import bcrypt
 import datetime
 
 import jwt
 
+from user_api.config.config import BaseConfig
 from user_api.models.token_model import Tokens
 from user_api.models.user_model import Users
-import user_api.run
 from user_api.utils.singleton import Singleton
 from user_api.models.user_model import UserModel
 
@@ -34,7 +33,7 @@ class Authenticate(metaclass=Singleton):
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
-            val = jwt.encode(payload, user_api.run.APP.config.get('SECRET_KEY'), algorithm='HS256')
+            val = jwt.encode(payload, BaseConfig.SECRET_KEY, algorithm='HS256')
             return val
         except Exception as ex:
             return ex
@@ -48,7 +47,7 @@ class Authenticate(metaclass=Singleton):
         """
 
         try:
-            payload = jwt.decode(auth_token, user_api.run.APP.config.get('SECRET_KEY'))
+            payload = jwt.decode(auth_token, BaseConfig.SECRET_KEY)
             is_blacklisted_token = Tokens().check_blacklist(auth_token)
             if is_blacklisted_token:
                 return 'Token blacklisted. Please log in again.'
