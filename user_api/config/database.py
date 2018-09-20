@@ -22,7 +22,6 @@ class DatabaseConnection(metaclass=Singleton):
         def __init__(self, schema):
             self.schema = schema
             self.conn = pg.connect(database=BaseConfig.DATABASE,
-                                   DATABASE_URL=BaseConfig.DATABASE_URL,
                                    user=BaseConfig.USER,
                                    password=BaseConfig.PASSWORD,
                                    host=BaseConfig.HOST,
