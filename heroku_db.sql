@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS "user_api_db";
+DROP DATABASE IF EXISTS "d80tbmd64eh4km";
 
-CREATE DATABASE "user_api_db";
+CREATE DATABASE "d80tbmd64eh4km";
 
-\connect "postgres://imxhfeqifoestz:689239e3f43d0bd11484b9dcc049e7ba3beed97f1f192dc49b5df388f43af2cd@ec2-54-225-97-112.compute-1.amazonaws.com:5432/d80tbmd64eh4km"
+\connect "d80tbmd64eh4km"
 
 DROP SCHEMA IF EXISTS production CASCADE;
 
