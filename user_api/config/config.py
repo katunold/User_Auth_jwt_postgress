@@ -21,8 +21,6 @@ class BaseConfig:
     HOST = "127.0.0.1"
     PORT = "5432"
     DATABASE = "user_api_db"
-    DATABASE_URL = 'postgres://imxhfeqifoestz:689239e3f43d0bd11484b9dcc049e7ba3beed97f1f192dc49b5df388f43af2cd@ec2-54' \
-                   '-225-97-112.compute-1.amazonaws.com:5432/d80tbmd64eh4km '
     USER = "postgres"
     PASSWORD = "qwerty"
 

@@ -1,3 +1,5 @@
+import os
+
 import psycopg2 as pg
 from psycopg2.extras import RealDictCursor
 
@@ -21,13 +23,16 @@ class DatabaseConnection(metaclass=Singleton):
         """
         def __init__(self, schema):
             self.schema = schema
-            self.conn = pg.connect(database=BaseConfig.DATABASE,
-                                   user=BaseConfig.USER,
-                                   password=BaseConfig.PASSWORD,
-                                   host=BaseConfig.HOST,
-                                   port=BaseConfig.PORT,
-                                   cursor_factory=RealDictCursor,
-                                   options=f'-c search_path={self.schema}')
+            if os.getenv("FLASK_ENV") == "production":
+                self.conn = pg.connect(os.getenv("DATABASE_URL"))
+            else:
+                self.conn = pg.connect(database=BaseConfig.DATABASE,
+                                       user=BaseConfig.USER,
+                                       password=BaseConfig.PASSWORD,
+                                       host=BaseConfig.HOST,
+                                       port=BaseConfig.PORT,
+                                       cursor_factory=RealDictCursor,
+                                       options=f'-c search_path={self.schema}')
             self.conn.autocommit = False
 
         def __exit__(self, exc_type, exc_val, exc_tb):
