@@ -1,5 +1,3 @@
-import os
-
 import psycopg2 as pg
 from psycopg2.extras import RealDictCursor
 
@@ -23,16 +21,14 @@ class DatabaseConnection(metaclass=Singleton):
         """
         def __init__(self, schema):
             self.schema = schema
-            if os.getenv("FLASK_ENV") == "production":
-                self.conn = pg.connect(os.getenv("DATABASE_URL"))
-            else:
-                self.conn = pg.connect(database=BaseConfig.DATABASE,
-                                       user=BaseConfig.USER,
-                                       password=BaseConfig.PASSWORD,
-                                       host=BaseConfig.HOST,
-                                       port=BaseConfig.PORT,
-                                       cursor_factory=RealDictCursor,
-                                       options=f'-c search_path={self.schema}')
+            self.conn = pg.connect(database=BaseConfig.DATABASE,
+                                   user=BaseConfig.USER,
+                                   password=BaseConfig.PASSWORD,
+                                   host=BaseConfig.HOST,
+                                   port=BaseConfig.PORT,
+                                   cursor_factory=RealDictCursor,
+                                   options='-c search_path={self.schema}')
+
             self.conn.autocommit = False
 
         def __exit__(self, exc_type, exc_val, exc_tb):
@@ -135,13 +131,13 @@ class DatabaseConnection(metaclass=Singleton):
         :return:
         """
 
-        _top = f"""UPDATE {self.schema}.{table_name} SET """
+        _top = """UPDATE {self.schema}.{table_name} SET """
 
-        vals = ", ".join([f""" "{col1}"='{val1}' """ for col1, val1 in update.items()])
+        vals = ", ".join([""" "{col1}"='{val1}' """ for col1, val1 in update.items()])
 
         middle = """ WHERE """
 
-        cols = " AND ".join([f""" "{col}"='{val}' """ for col, val in selection.items()])
+        cols = " AND ".join([""" "{col}"='{val}' """ for col, val in selection.items()])
 
         sql = _top + vals + middle + cols
 
